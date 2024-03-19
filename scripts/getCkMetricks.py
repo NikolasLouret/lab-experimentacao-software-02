@@ -118,7 +118,7 @@ def delete_repositories(repository: str):
     
 
 def main():
-    result = fetch_repository_data(100)
+    result = fetch_repository_data(1000)
     df = save_to_csv(result)
     clone_repositories(result[0]['data']['search']['edges'][10]['node']['url'])
     run_ck_calculator(result[0]['data']['search']['edges'][10]['node']['name'])
