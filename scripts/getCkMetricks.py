@@ -8,7 +8,7 @@ load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
 api_url = 'https://api.github.com/graphql'
-ROOT_PATH = os.getcwd().split('template-lab-experimentacao-02/scripts')[0].replace('\\', '/')
+ROOT_PATH = os.getcwd().split('lab-experimentacao-software-02/scripts')[0].replace('\\', '/')
 headers = {'Authorization': 'Bearer %s' % API_KEY}
 allResults = list()
 
@@ -106,22 +106,22 @@ def run_ck_calculator(repository: str):
     os.system(ck_command)
 
     
-def gitClone(url):
+def clone_repositories(url):
      repo_url = url+".git"
      os.chdir('./scripts/repos/')
      os.system(f'git clone {repo_url}')
      
-def deleteRepo(repository: str):
+def delete_repositories(repository: str):
     repo_path = f'{ROOT_PATH}/scripts/repos/{repository}'
     if os.path.exists(repo_path):
         os.system(f'rmdir /S /Q {repository}')
     
 
 def main():
-    result = fetch_repository_data(20)
+    result = fetch_repository_data(100)
     df = save_to_csv(result)
-    gitClone(result[0]['data']['search']['edges'][10]['node']['url'])
+    clone_repositories(result[0]['data']['search']['edges'][10]['node']['url'])
     run_ck_calculator(result[0]['data']['search']['edges'][10]['node']['name'])
-    deleteRepo(result[0]['data']['search']['edges'][10]['node']['name'])
+    delete_repositories(result[0]['data']['search']['edges'][10]['node']['name'])
 
 main()
