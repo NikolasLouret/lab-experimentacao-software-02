@@ -108,20 +108,48 @@ def run_ck_calculator(repository: str):
     
 def clone_repository(url):
      repo_url = url+".git"
-     os.chdir('./scripts/repos/')
+     os.chdir(f'{ROOT_PATH}/scripts/repos/')
      os.system(f'git clone {repo_url}')
      
 def delete_repositories(repository: str):
     repo_path = f'{ROOT_PATH}/scripts/repos/{repository}'
     if os.path.exists(repo_path):
         os.system(f'rmdir /S /Q {repository}')
+
+def combine_ck_results(input_folder, output_file):
+    all_data = []
+
+    # Iterar sobre todos os diretórios (repositórios clonados) na pasta de entrada
+    for repo_folder in os.listdir(input_folder):
+        repo_path = os.path.join(input_folder, repo_folder)
+        if os.path.isdir(repo_path):
+            # Iterar sobre todos os arquivos CSV dentro do diretório do repositório
+            for file_name in os.listdir(repo_path):
+                if file_name.endswith('.csv'):
+                    file_path = os.path.join(repo_path, file_name)
+                    df = pd.read_csv(file_path)
+                    all_data.append(df)
+
+    # Concatenar todos os DataFrames em um único DataFrame
+    combined_df = pd.concat(all_data, ignore_index=True)
+
+    # Salvar o DataFrame combinado em um arquivo CSV
+    combined_df.to_csv(output_file, index=False)
     
 
 def main():
     result = fetch_repository_data(1000)
-    df = save_to_csv(result)
-    clone_repository(result[0]['data']['search']['edges'][10]['node']['url'])
-    run_ck_calculator(result[0]['data']['search']['edges'][10]['node']['name'])
-    delete_repositories(result[0]['data']['search']['edges'][10]['node']['name'])
-
+    for search_result in result:
+        edges = search_result['data']['search']['edges']
+        for edge in edges:
+            repo_url = edge['node']['url']
+            repo_name = edge['node']['name']
+            clone_repository(repo_url)
+            try:
+                run_ck_calculator(repo_name)
+            except Exception as e:
+                print(f"Erro ao calcular métricas para o repositório {repo_name}: {e}")
+            delete_repositories(repo_name)
+    combine_ck_results(f'{ROOT_PATH}/scripts/dataset/ck_results', f'{ROOT_PATH}/scripts/dataset/ck_results/combined_results.csv')
+    
 main()
