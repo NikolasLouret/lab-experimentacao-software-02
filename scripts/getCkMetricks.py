@@ -88,7 +88,6 @@ def save_to_csv(result):
 
     df = pd.concat(dfs, ignore_index=True)
 
-    # Save the dataframe directly to a CSV file
     df.to_csv('scripts/dataset/csv/data.csv', index=False)
 
     return df
@@ -119,21 +118,18 @@ def delete_repositories(repository: str):
 def combine_ck_results(input_folder, output_file):
     all_data = []
 
-    # Iterar sobre todos os diretórios (repositórios clonados) na pasta de entrada
     for repo_folder in os.listdir(input_folder):
         repo_path = os.path.join(input_folder, repo_folder)
         if os.path.isdir(repo_path):
-            # Iterar sobre todos os arquivos CSV dentro do diretório do repositório
+
             for file_name in os.listdir(repo_path):
                 if file_name.endswith('.csv'):
                     file_path = os.path.join(repo_path, file_name)
                     df = pd.read_csv(file_path)
                     all_data.append(df)
 
-    # Concatenar todos os DataFrames em um único DataFrame
     combined_df = pd.concat(all_data, ignore_index=True)
 
-    # Salvar o DataFrame combinado em um arquivo CSV
     combined_df.to_csv(output_file, index=False)
     
 
