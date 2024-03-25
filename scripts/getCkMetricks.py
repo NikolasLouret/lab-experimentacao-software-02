@@ -16,7 +16,7 @@ allResults = list()
 def fetch_repository_data(numRepos):
     endCursor = None
 
-    for i in range(int(numRepos/20)):
+    for i in range(int(numRepos/1)):
         variables = {"endCursor": endCursor}
         query_result = make_graphql_request(variables)
         allResults.append(query_result)
@@ -28,7 +28,7 @@ def fetch_repository_data(numRepos):
 def make_graphql_request(variables):
     query = """
     query ($endCursor: String) {
-    search(query: "language:Java stars:>1 fork:false sort:stars-desc", type: REPOSITORY, first:20, after: $endCursor) {
+    search(query: "language:Java stars:>1 fork:false sort:stars-desc", type: REPOSITORY, first:2                                                                    , after: $endCursor) {
         edges {
             node {
                 ... on Repository {
@@ -121,20 +121,22 @@ def combine_ck_results(input_folder, output_file):
     for repo_folder in os.listdir(input_folder):
         repo_path = os.path.join(input_folder, repo_folder)
         if os.path.isdir(repo_path):
-
             for file_name in os.listdir(repo_path):
                 if file_name.endswith('.csv'):
                     file_path = os.path.join(repo_path, file_name)
                     df = pd.read_csv(file_path)
-                    all_data.append(df)
+                    
+                    if not df.empty:
+                        all_data.append(df)
 
-    combined_df = pd.concat(all_data, ignore_index=True)
-
-    combined_df.to_csv(output_file, index=False)
+    if all_data:
+        combined_df = pd.concat(all_data, ignore_index=True)
+        combined_df.to_csv(output_file, index=False)
     
 
 def main():
-    result = fetch_repository_data(1000)
+    result = fetch_repository_data(2)
+    save_to_csv(result)
     for search_result in result:
         edges = search_result['data']['search']['edges']
         for edge in edges:
