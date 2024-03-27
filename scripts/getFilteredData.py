@@ -4,31 +4,17 @@ import matplotlib.pyplot as plt
 
 ROOT_PATH = os.getcwd().split('lab-experimentacao-software-02/scripts')[0].replace('\\', '/')
 
-def calculate_mean(input_file, column):
-    df = pd.read_csv(input_file, low_memory=False)
-    mean = df[column].mean()
-    return mean
+def get_data(javaRepositories):
+        
+    avg_cbo = javaRepositories['Média CBO']
+    dit_max = javaRepositories['DIT Max']
+    avg_lcom = javaRepositories['Média LCOM']
+    stargazers_count = javaRepositories['Estrelas']
+    years = javaRepositories['Anos']
+    num_releases = javaRepositories['Nº Releases']
+    loc = javaRepositories['LOC']
 
-def calculate_repositories_age(df):
-    df['createdAt'] = pd.to_datetime(df['node.createdAt']).dt.tz_localize(None)
-    df['repository_age'] = (pd.to_datetime('today').tz_localize(None) - df['createdAt']).dt.days / 365
-    
-def calculate_releases(df):
-    df['node.releases.totalCount']
-
-def get_cbo_and_stargazers(input_file, javaRepositories):
-    cbo_values = pd.read_csv(input_file, low_memory=False)['cbo']
-    dit_values = pd.read_csv(input_file, low_memory=False)['dit']
-    lcom_values = pd.read_csv(input_file, low_memory=False)['lcom']
-    stargazers_count = javaRepositories['node.stargazers.totalCount']
-
-    min_len = min(len(cbo_values), len(dit_values), len(lcom_values), len(stargazers_count))
-    cbo_values = cbo_values[:min_len]
-    dit_values = dit_values[:min_len]
-    lcom_values = dit_values[:min_len]
-    stargazers_count = stargazers_count[:min_len]
-
-    return cbo_values, dit_values, lcom_values, stargazers_count
+    return avg_cbo, dit_max, avg_lcom, stargazers_count, years, num_releases, loc
 
 def plot_scatter(x_values, y_values, x_label='', y_label='', title=''):
     plt.figure(figsize=(10, 6))
@@ -41,14 +27,28 @@ def plot_scatter(x_values, y_values, x_label='', y_label='', title=''):
 
 def main():
     javaRepositories = pd.read_csv(f'{ROOT_PATH}/scripts/dataset/csv/data.csv')
-    calculate_repositories_age(javaRepositories)
-    calculate_releases(javaRepositories)
+        
+    avg_cbo, dit_max, avg_lcom, stargazers_count, years, num_releases, loc = get_data(javaRepositories)
     
-    input_file = f'{ROOT_PATH}/scripts/dataset/ck_results/combined_results.csv'
-    cbo_values, dit_values, lcom_values, stargazers_count = get_cbo_and_stargazers(input_file, javaRepositories)
-    plot_scatter(cbo_values, stargazers_count, 'CBO', 'Número de Estrelas', 'Relação entre CBO e o número de estrelas')
-    plot_scatter(dit_values, stargazers_count, 'DIT', 'Número de Estrelas', 'Relação entre DIT e o número de estrelas')
-    plot_scatter(lcom_values, stargazers_count, 'LCOM', 'Número de Estrelas', 'Relação entre LCOM e o número de estrelas')
+    # Popularidade
+    plot_scatter(avg_cbo, stargazers_count, 'Média CBO', 'Número de Estrelas', 'Relação entre CBO e o número de estrelas')
+    plot_scatter(dit_max, stargazers_count, 'DIT Máx', 'Número de Estrelas', 'Relação entre DIT e o número de estrelas')
+    plot_scatter(avg_lcom, stargazers_count, 'Média LCOM', 'Número de Estrelas', 'Relação entre LCOM e o número de estrelas')
+    
+    # Maturidade
+    plot_scatter(avg_cbo, years, 'Média CBO', 'Anos', 'Relação entre CBO e Maturidade')
+    plot_scatter(dit_max, years, 'DIT Máx', 'Anos', 'Relação entre DIT e Maturidade')
+    plot_scatter(avg_lcom, years, 'Média LCOM', 'Anos', 'Relação entre LCOM e Maturidade')
+    
+    # Atividade
+    plot_scatter(avg_cbo, num_releases, 'Média CBO', 'Número de Releases', 'Relação entre CBO e o número de Releases')
+    plot_scatter(dit_max, num_releases, 'DIT Máx', 'Número de Releases', 'Relação entre DIT e o número de Releases')
+    plot_scatter(avg_lcom, num_releases, 'Média LCOM', 'Número de Releases', 'Relação entre LCOM e o número de Releases')
+    
+    # Tamanho
+    plot_scatter(avg_cbo, loc, 'Média CBO', 'LOC', 'Relação entre CBO e LOC')
+    plot_scatter(dit_max, loc, 'DIT Máx', 'LOC', 'Relação entre DIT e LOC')
+    plot_scatter(avg_lcom, loc, 'Média LCOM', 'LOC', 'Relação entre LCOM e LOC')
     
 if __name__ == "__main__":
     main()
