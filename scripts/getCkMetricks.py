@@ -16,7 +16,7 @@ allResults = list()
 def fetch_repository_data(numRepos):
     endCursor = None
 
-    for i in range(int(numRepos/1)):
+    for i in range(int(numRepos/2)):
         variables = {"endCursor": endCursor}
         query_result = make_graphql_request(variables)
         allResults.append(query_result)
@@ -135,7 +135,7 @@ def combine_ck_results(input_folder, output_file):
     
 
 def main():
-    result = fetch_repository_data(2)
+    result = fetch_repository_data(10)
     save_to_csv(result)
     for search_result in result:
         edges = search_result['data']['search']['edges']
