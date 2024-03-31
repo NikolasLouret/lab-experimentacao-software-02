@@ -16,7 +16,7 @@ allResults = list()
 def fetch_repository_data(numRepos):
     endCursor = None
 
-    for i in range(int(numRepos / 2)):
+    for i in range(int(numRepos / 20)):
         variables = {"endCursor": endCursor}
         query_result = make_graphql_request(variables)
         allResults.append(query_result)
@@ -28,7 +28,7 @@ def fetch_repository_data(numRepos):
 def make_graphql_request(variables):
     query = """
     query ($endCursor: String) {
-    search(query: "language:Java stars:>1 fork:false sort:stars-desc", type: REPOSITORY, first:2, after: $endCursor) {
+    search(query: "language:Java stars:>1 fork:false sort:stars-desc", type: REPOSITORY, first:20, after: $endCursor) {
         edges {
             node {
                 ... on Repository {
@@ -87,17 +87,18 @@ def save_to_csv(result):
 
             metrics = get_metrics(repo_name)
             
-            avg_cbo = round(np.mean(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
-            median_cbo = round(np.median(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
-            std_cbo = round(np.std(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
-            avg_lcom = round(np.mean(metrics['lcom']) if metrics['lcom'] else np.nan, 2)
-            median_lcom = round(np.median(metrics['lcom']) if metrics['lcom'] else np.nan, 2) 
-            std_lcom = round(np.std(metrics['lcom']) if metrics['lcom'] else np.nan, 2)
-            dit_max = np.max(metrics['dit']) if metrics['dit'] else np.nan
-            dit_max = np.max(metrics['dit']) if metrics['dit'] else np.nan
-            loc = np.sum(metrics['loc']) if 'loc' in metrics else np.nan
-
-            data_to_csv.append([f'{owner_login}/{repo_name}', repo_name, stars, years_diff, releases, loc, avg_cbo, median_cbo, std_cbo, avg_lcom, median_lcom, std_lcom, dit_max])
+            if metrics is not None:
+                avg_cbo = round(np.mean(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
+                median_cbo = round(np.median(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
+                std_cbo = round(np.std(metrics['cbo']) if metrics['cbo'] else np.nan, 2)
+                avg_lcom = round(np.mean(metrics['lcom']) if metrics['lcom'] else np.nan, 2)
+                median_lcom = round(np.median(metrics['lcom']) if metrics['lcom'] else np.nan, 2) 
+                std_lcom = round(np.std(metrics['lcom']) if metrics['lcom'] else np.nan, 2)
+                dit_max = np.max(metrics['dit']) if metrics['dit'] else np.nan
+                dit_max = np.max(metrics['dit']) if metrics['dit'] else np.nan
+                loc = np.sum(metrics['loc']) if 'loc' in metrics else np.nan
+                
+                data_to_csv.append([f'{owner_login}/{repo_name}', repo_name, stars, years_diff, releases, loc, avg_cbo, median_cbo, std_cbo, avg_lcom, median_lcom, std_lcom, dit_max])
 
     header = ['Repositório', 'Nome', 'Estrelas', 'Anos', 'Nº Releases', 'LOC', 'Média CBO', 'Mediana CBO', 'Desvio Padrão CBO', 'Média LCOM', 'Mediana LCOM', 'Desvio Padrão LCOM', 'DIT Max']
     df = pd.DataFrame(data_to_csv)
@@ -134,19 +135,26 @@ def run_ck_calculator(repository: str):
 
 
 def get_metrics(repository: str):
-    df = pd.read_csv(f'{ROOT_PATH}/scripts/dataset/ck_results/{repository}/class.csv')
+    csv_path = f'{ROOT_PATH}/scripts/dataset/ck_results/{repository}/class.csv'
+    try:
+        df = pd.read_csv(csv_path, encoding='latin1')
+    except pd.errors.EmptyDataError:
+        return None
+    except FileNotFoundError:
+        return None
     
     metrics = {
-        'cbo': df['cbo'].tolist(),
-        'lcom': df['lcom'].tolist(),
-        'dit': df['dit'].tolist(),
-        'loc': df['loc'].tolist()
+        'cbo': df['cbo'].tolist() if 'cbo' in df.columns else None,
+        'lcom': df['lcom'].tolist() if 'lcom' in df.columns else None,
+        'dit': df['dit'].tolist() if 'dit' in df.columns else None,
+        'loc': df['loc'].tolist() if 'loc' in df.columns else None
     }
 
     return metrics
 
+
 def main():
-    result = fetch_repository_data(10)
+    result = fetch_repository_data(1000)
     for search_result in result:
         edges = search_result['data']['search']['edges']
         for edge in edges:
@@ -158,8 +166,7 @@ def main():
             except Exception as e:
                 print(f"Erro ao calcular métricas para o repositório {repo_name}: {e}")
             delete_repositories(repo_name)
-            
-    save_to_csv(result)
+            save_to_csv(result)
 
 
 if __name__ == "__main__":
