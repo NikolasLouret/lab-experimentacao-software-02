@@ -30,24 +30,25 @@ Hipótese: Repositórios com um maior volume de código, medido pelas linhas de 
 
 - **RQ 01.** Qual a relação entre a popularidade dos repositórios e as suas características de qualidade?
 
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/935c5618-6420-4572-ac7e-ab493719b737" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/3078cf35-721b-44ea-a5de-133448c7b19b" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/5fd21a1c-1931-4ba6-adf9-6fcd919b3d08" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/be767d1a-58c5-476f-a118-1756c14b561f" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/f2cc30b8-e21b-4ce2-88f3-4b96f78329ae" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/6375710e-5da7-4325-bcba-b274c07c2adb" width="600">
 
 - **RQ 02.** Qual a relação entre a maturidade do repositórios e as suas características de qualidade?
 
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/77a53a39-19e1-4821-8f9b-78f6370bbcf9" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/6f81a21b-2ecc-4f18-b333-0827a095b87c" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/4a6dbc1f-6c18-4b26-b02a-5ec9fcf78134" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/0bdbb4dd-a0c1-4a48-a243-31741b05fb39" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/a52d331e-d7f9-45dc-bc79-dfd52ac5b18a" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/2e9cf8dc-91a2-42dc-aa7f-8d6eff3a1d48" width="600">
 
 - **RQ 03.** Qual a relação entre a atividade dos repositórios e as suas características de qualidade?
 
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/f37df97b-3f8e-4e77-9d41-bbd634109c9c" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/42cf9bf0-8d44-4931-973c-1f83ce37c35b" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/f22e4c9b-d1d4-4e52-82b6-d3dad2291f45" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/d12e288a-f50e-4de1-b9cd-496e7903672e" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/80f8f39d-4b0b-41bd-af2b-7e2978cbcb39" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/fc10facd-cdea-4065-b0d8-d796aedb2cc3" width="600">
 
 - **RQ 04.** Qual a relação entre o tamanho dos repositórios e as suas características de qualidade?
 
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/c42a6d0a-44f3-47e7-8ee5-71c511525593" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/09f2a1a3-687f-4c5f-b480-1d7446528fec" width="600">
-<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/a9482f71-93ea-482b-b04c-6fe3db1cf4d6" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/8564d149-7932-4fe6-b6c8-f90afde47271" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/526e4044-5281-4c31-81bb-517fca0d24d7" width="600">
+<img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/62d9977b-628c-460f-8443-6be27e057dae" width="600">
+
