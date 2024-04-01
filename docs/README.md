@@ -94,3 +94,7 @@ Hipótese: Repositórios com um maior volume de código, medido pelas linhas de 
 <img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/526e4044-5281-4c31-81bb-517fca0d24d7" width="600">
 <img src="https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/62d9977b-628c-460f-8443-6be27e057dae" width="600">
 
+## Conclusão
+
+Após analisar os dados, é mostrado que a popularidade de um repositório, medida pelo número de estrelas no GitHub, tem uma relação com métricas de qualidade, como por exemplo CBO (Coupling Between Objects) e DIT (Depth Inheritance Tree). No entanto, outras métricas, como LCOM (Lack of Cohesion of Methods), parecem não apresentar uma correlação tão clara com a popularidade. Além disso, a maturidade medida pela idade do repositório, e a atividade avaliada pelo número de releases, não demonstraram uma influência significativa nas métricas de qualidade analisadas. Dessa forma, é mostrado que a qualidade do código é influenciada por uma variedade de fatores além da popularidade e da atividade do repositório, incluindo sua estrutura interna e a manutenção contínua ao longo do tempo. Esses resultados destacam a dificuldade em avaliar qualitativamente um software e a necessidade de considerar múltiplas questões ao avaliar a popularidade e a qualidade de um repositório no GitHub.
+
