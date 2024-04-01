@@ -35,6 +35,15 @@ def plot_scatter(x_values, y_values, x_label='', y_label='', title='', x_limit=N
     
     plt.show()
 
+def plot_correlation_matrix(data, title):
+    plt.figure(figsize=(10, 6))
+    plt.matshow(data.corr(), cmap='coolwarm', fignum=1)
+    plt.colorbar()
+    plt.xticks(range(data.shape[1]), data.columns, rotation=45)
+    plt.yticks(range(data.shape[1]), data.columns)
+    plt.title(title)
+    plt.show()
+
 def main():
     javaRepositories = pd.read_csv(f'{ROOT_PATH}/scripts/dataset/csv/data.csv')
         
@@ -44,21 +53,29 @@ def main():
     plot_scatter(avg_cbo, stargazers_count, 'Média CBO', 'Número de Estrelas', 'Relação entre CBO e o número de estrelas', x_limit=(0,14))
     plot_scatter(dit_max, stargazers_count, 'DIT Máx', 'Número de Estrelas', 'Relação entre DIT e o número de estrelas', x_limit=(0,100))
     plot_scatter(avg_lcom, stargazers_count, 'Média LCOM', 'Número de Estrelas', 'Relação entre LCOM e o número de estrelas', x_limit=(0,200))
+    data_rq1 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Estrelas']]
+    plot_correlation_matrix(data_rq1, 'Matriz de Correlação Popularidade')
     
     # Maturidade
     plot_scatter(avg_cbo, years, 'Média CBO', 'Anos', 'Relação entre CBO e Maturidade', x_limit=(0,14))
     plot_scatter(dit_max, years, 'DIT Máx', 'Anos', 'Relação entre DIT e Maturidade', x_limit=(0,100))
     plot_scatter(avg_lcom, years, 'Média LCOM', 'Anos', 'Relação entre LCOM e Maturidade', x_limit=(0,100))
+    data_rq2 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Anos']]
+    plot_correlation_matrix(data_rq2, 'Matriz de Correlação Maturidade')
     
     # Atividade
     plot_scatter(avg_cbo, num_releases, 'Média CBO', 'Número de Releases', 'Relação entre CBO e o número de Releases', x_limit=(0,14))
     plot_scatter(dit_max, num_releases, 'DIT Máx', 'Número de Releases', 'Relação entre DIT e o número de Releases', x_limit=(0,100))
     plot_scatter(avg_lcom, num_releases, 'Média LCOM', 'Número de Releases', 'Relação entre LCOM e o número de Releases', x_limit=(0,100))
+    data_rq3 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Nº Releases']]
+    plot_correlation_matrix(data_rq3, 'Matriz de Correlação Atividade')
     
     # Tamanho
     plot_scatter(avg_cbo, loc, 'Média CBO', 'LOC', 'Relação entre CBO e LOC', x_limit=(0,14))
     plot_scatter(dit_max, loc, 'DIT Máx', 'LOC', 'Relação entre DIT e LOC', x_limit=(0,100), y_limit=(0,1000000))
     plot_scatter(avg_lcom, loc, 'Média LCOM', 'LOC', 'Relação entre LCOM e LOC', x_limit=(0,200), y_limit=(0,2500000))
+    data_rq4 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'LOC']]
+    plot_correlation_matrix(data_rq4, 'Matriz de Correlação Tamanho')
     
 if __name__ == "__main__":
     main()
