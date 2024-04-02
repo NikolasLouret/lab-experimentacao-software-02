@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
-from scipy.stats import pearsonr
+from scipy.stats import spearmanr
 import numpy as np
 
 ROOT_PATH = os.getcwd().split('lab-experimentacao-software-02/scripts')[0].replace('\\', '/')
@@ -46,16 +46,16 @@ def plot_correlation_matrix(data, title):
     plt.title(title)
     plt.show()
 
-def calculate_pearson_correlation(x_values, y_values):
+def calculate_spearman_correlation(x_values, y_values):
     valid_indices = np.isfinite(x_values) & np.isfinite(y_values)
     x_values_filtered = x_values[valid_indices]
     y_values_filtered = y_values[valid_indices]
     
-    correlation_coefficient, _ = pearsonr(x_values_filtered, y_values_filtered)
+    correlation_coefficient, p_value = spearmanr(x_values_filtered, y_values_filtered)
     
-    correlation_coefficient = round(correlation_coefficient, 3)
+    relation_coefficient = round(correlation_coefficient, 3)
 
-    return correlation_coefficient
+    return correlation_coefficient, p_value
 
 def main():
     javaRepositories = pd.read_csv(f'{ROOT_PATH}/scripts/dataset/csv/data.csv')
@@ -73,14 +73,14 @@ def main():
     data_rq1 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Estrelas']]
     plot_correlation_matrix(data_rq1, 'Matriz de Correlação Popularidade')
     
-    # Pearson 
-    pearson_corr_cbo_stargazers = calculate_pearson_correlation(avg_cbo, stargazers_count)
-    pearson_corr_dit_stargazers = calculate_pearson_correlation(dit_max, stargazers_count)
-    pearson_corr_lcom_stargazers = calculate_pearson_correlation(avg_lcom, stargazers_count)
+    # Spearman 
+    spearman_corr_cbo_stargazers, p_value_cbo_stargazers = calculate_spearman_correlation(avg_cbo, stargazers_count)
+    spearman_corr_dit_stargazers, p_value_dit_stargazers = calculate_spearman_correlation(dit_max, stargazers_count)
+    spearman_corr_lcom_stargazers, p_value_lcom_stargazers = calculate_spearman_correlation(avg_lcom, stargazers_count)
     
-    print("\nCorrelação de Pearson entre Média CBO e Número de Estrelas:", pearson_corr_cbo_stargazers)
-    print("Correlação de Pearson entre DIT Máx e Número de Estrelas:", pearson_corr_dit_stargazers)
-    print("Correlação de Pearson entre Média LCOM e Número de Estrelas:", pearson_corr_lcom_stargazers)
+    print("\nCorrelação de Spearman entre Média CBO e Número de Estrelas:", spearman_corr_cbo_stargazers, "p-value:", p_value_cbo_stargazers)
+    print("Correlação de Spearman entre DIT Máx e Número de Estrelas:", spearman_corr_dit_stargazers, "p-value:", p_value_dit_stargazers)
+    print("Correlação de Spearman entre Média LCOM e Número de Estrelas:", spearman_corr_lcom_stargazers, "p-value:", p_value_lcom_stargazers)
 
     # Maturidade
     plot_scatter(avg_cbo, years, 'Média CBO', 'Anos', 'Relação entre CBO e Maturidade', x_limit=(0,14))
@@ -89,14 +89,14 @@ def main():
     data_rq2 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Anos']]
     plot_correlation_matrix(data_rq2, 'Matriz de Correlação Maturidade')
     
-    # Pearson 
-    pearson_corr_cbo_years = calculate_pearson_correlation(avg_cbo, years)
-    pearson_corr_dit_years = calculate_pearson_correlation(dit_max, years)
-    pearson_corr_lcom_years = calculate_pearson_correlation(avg_lcom, years)
+    # Spearman 
+    spearman_corr_cbo_years, p_value_cbo_years = calculate_spearman_correlation(avg_cbo, years)
+    spearman_corr_dit_years, p_value_dit_years = calculate_spearman_correlation(dit_max, years)
+    spearman_corr_lcom_years, p_value_lcom_years = calculate_spearman_correlation(avg_lcom, years)
     
-    print("\nCorrelação de Pearson entre Média CBO e Anos:", pearson_corr_cbo_years)
-    print("Correlação de Pearson entre DIT Máx e Anos:", pearson_corr_dit_years)
-    print("Correlação de Pearson entre Média LCOM e Anos:", pearson_corr_lcom_years)
+    print("\nCorrelação de Spearman entre Média CBO e Anos:", spearman_corr_cbo_years, "p-value:", p_value_cbo_years)
+    print("Correlação de Spearman entre DIT Máx e Anos:", spearman_corr_dit_years, "p-value:", p_value_dit_years)
+    print("Correlação de Spearman entre Média LCOM e Anos:", spearman_corr_lcom_years, "p-value:", p_value_lcom_years)
 
     # Atividade
     plot_scatter(avg_cbo, num_releases, 'Média CBO', 'Número de Releases', 'Relação entre CBO e o número de Releases', x_limit=(0,14))
@@ -105,14 +105,14 @@ def main():
     data_rq3 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'Nº Releases']]
     plot_correlation_matrix(data_rq3, 'Matriz de Correlação Atividade')
     
-    # Pearson 
-    pearson_corr_cbo_releases = calculate_pearson_correlation(avg_cbo, num_releases)
-    pearson_corr_dit_releases = calculate_pearson_correlation(dit_max, num_releases)
-    pearson_corr_lcom_releases = calculate_pearson_correlation(avg_lcom, num_releases)
+    # Spearman 
+    spearman_corr_cbo_releases, p_value_cbo_releases = calculate_spearman_correlation(avg_cbo, num_releases)
+    spearman_corr_dit_releases, p_value_dit_releases = calculate_spearman_correlation(dit_max, num_releases)
+    spearman_corr_lcom_releases, p_value_lcom_releases = calculate_spearman_correlation(avg_lcom, num_releases)
     
-    print("\nCorrelação de Pearson entre Média CBO e Número de Releases:", pearson_corr_cbo_releases)
-    print("Correlação de Pearson entre DIT Máx e Número de Releases:", pearson_corr_dit_releases)
-    print("Correlação de Pearson entre Média LCOM e Número de Releases:", pearson_corr_lcom_releases)
+    print("\nCorrelação de Spearman entre Média CBO e Número de Releases:", spearman_corr_cbo_releases, "p-value:", p_value_cbo_releases)
+    print("Correlação de Spearman entre DIT Máx e Número de Releases:", spearman_corr_dit_releases, "p-value:", p_value_dit_releases)
+    print("Correlação de Spearman entre Média LCOM e Número de Releases:", spearman_corr_lcom_releases, "p-value:", p_value_lcom_releases)
 
     # Tamanho
     plot_scatter(avg_cbo, loc, 'Média CBO', 'LOC', 'Relação entre CBO e LOC', x_limit=(0,14))
@@ -121,14 +121,14 @@ def main():
     data_rq4 = javaRepositories[['Média CBO', 'DIT Max', 'Média LCOM', 'LOC']]
     plot_correlation_matrix(data_rq4, 'Matriz de Correlação Tamanho')
     
-    # Pearson 
-    pearson_corr_cbo_loc = calculate_pearson_correlation(avg_cbo, loc)
-    pearson_corr_dit_loc = calculate_pearson_correlation(dit_max, loc)
-    pearson_corr_lcom_loc = calculate_pearson_correlation(avg_lcom, loc)
+    # Spearman 
+    spearman_corr_cbo_loc, p_value_cbo_loc = calculate_spearman_correlation(avg_cbo, loc)
+    spearman_corr_dit_loc, p_value_dit_loc = calculate_spearman_correlation(dit_max, loc)
+    spearman_corr_lcom_loc, p_value_lcom_loc = calculate_spearman_correlation(avg_lcom, loc)
     
-    print("\nCorrelação de Pearson entre Média CBO e LOC:", pearson_corr_cbo_loc)
-    print("Correlação de Pearson entre DIT Máx e LOC:", pearson_corr_dit_loc)
-    print("Correlação de Pearson entre Média LCOM e LOC:", pearson_corr_lcom_loc)
+    print("\nCorrelação de Spearman entre Média CBO e LOC:", spearman_corr_cbo_loc, "p-value:", p_value_cbo_loc)
+    print("Correlação de Spearman entre DIT Máx e LOC:", spearman_corr_dit_loc, "p-value:", p_value_dit_loc)
+    print("Correlação de Spearman entre Média LCOM e LOC:", spearman_corr_lcom_loc, "p-value:", p_value_lcom_loc)
     
 if __name__ == "__main__":
     main()
