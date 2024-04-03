@@ -53,7 +53,7 @@ def calculate_spearman_correlation(x_values, y_values):
     
     correlation_coefficient, p_value = spearmanr(x_values_filtered, y_values_filtered)
     
-    relation_coefficient = round(correlation_coefficient, 3)
+    correlation_coefficient = round(correlation_coefficient, 2)
 
     return correlation_coefficient, p_value
 
@@ -78,9 +78,9 @@ def main():
     spearman_corr_dit_stargazers, p_value_dit_stargazers = calculate_spearman_correlation(dit_max, stargazers_count)
     spearman_corr_lcom_stargazers, p_value_lcom_stargazers = calculate_spearman_correlation(avg_lcom, stargazers_count)
     
-    print("\nCorrelação de Spearman entre Média CBO e Número de Estrelas:", spearman_corr_cbo_stargazers, "p-value:", p_value_cbo_stargazers)
-    print("Correlação de Spearman entre DIT Máx e Número de Estrelas:", spearman_corr_dit_stargazers, "p-value:", p_value_dit_stargazers)
-    print("Correlação de Spearman entre Média LCOM e Número de Estrelas:", spearman_corr_lcom_stargazers, "p-value:", p_value_lcom_stargazers)
+    print("\nCorrelação de Spearman entre Média CBO e Número de Estrelas: rho =", spearman_corr_cbo_stargazers, "p-value =", p_value_cbo_stargazers)
+    print("Correlação de Spearman entre DIT Máx e Número de Estrelas: rho =", spearman_corr_dit_stargazers, "p-value =", p_value_dit_stargazers)
+    print("Correlação de Spearman entre Média LCOM e Número de Estrelas: rho =", spearman_corr_lcom_stargazers, "p-value =", p_value_lcom_stargazers)
 
     # Maturidade
     plot_scatter(avg_cbo, years, 'Média CBO', 'Anos', 'Relação entre CBO e Maturidade', x_limit=(0,14))
@@ -94,9 +94,9 @@ def main():
     spearman_corr_dit_years, p_value_dit_years = calculate_spearman_correlation(dit_max, years)
     spearman_corr_lcom_years, p_value_lcom_years = calculate_spearman_correlation(avg_lcom, years)
     
-    print("\nCorrelação de Spearman entre Média CBO e Anos:", spearman_corr_cbo_years, "p-value:", p_value_cbo_years)
-    print("Correlação de Spearman entre DIT Máx e Anos:", spearman_corr_dit_years, "p-value:", p_value_dit_years)
-    print("Correlação de Spearman entre Média LCOM e Anos:", spearman_corr_lcom_years, "p-value:", p_value_lcom_years)
+    print("\nCorrelação de Spearman entre Média CBO e Anos: rho =", spearman_corr_cbo_years, "p-value =", p_value_cbo_years)
+    print("Correlação de Spearman entre DIT Máx e Anos: rho =", spearman_corr_dit_years, "p-value =", p_value_dit_years)
+    print("Correlação de Spearman entre Média LCOM e Anos: rho =", spearman_corr_lcom_years, "p-value =", p_value_lcom_years)
 
     # Atividade
     plot_scatter(avg_cbo, num_releases, 'Média CBO', 'Número de Releases', 'Relação entre CBO e o número de Releases', x_limit=(0,14))
@@ -110,9 +110,9 @@ def main():
     spearman_corr_dit_releases, p_value_dit_releases = calculate_spearman_correlation(dit_max, num_releases)
     spearman_corr_lcom_releases, p_value_lcom_releases = calculate_spearman_correlation(avg_lcom, num_releases)
     
-    print("\nCorrelação de Spearman entre Média CBO e Número de Releases:", spearman_corr_cbo_releases, "p-value:", p_value_cbo_releases)
-    print("Correlação de Spearman entre DIT Máx e Número de Releases:", spearman_corr_dit_releases, "p-value:", p_value_dit_releases)
-    print("Correlação de Spearman entre Média LCOM e Número de Releases:", spearman_corr_lcom_releases, "p-value:", p_value_lcom_releases)
+    print("\nCorrelação de Spearman entre Média CBO e Número de Releases: rho =", spearman_corr_cbo_releases, "p-value =", p_value_cbo_releases)
+    print("Correlação de Spearman entre DIT Máx e Número de Releases: rho =", spearman_corr_dit_releases, "p-value =", p_value_dit_releases)
+    print("Correlação de Spearman entre Média LCOM e Número de Releases: rho =", spearman_corr_lcom_releases, "p-value =", p_value_lcom_releases)
 
     # Tamanho
     plot_scatter(avg_cbo, loc, 'Média CBO', 'LOC', 'Relação entre CBO e LOC', x_limit=(0,14))
@@ -126,9 +126,9 @@ def main():
     spearman_corr_dit_loc, p_value_dit_loc = calculate_spearman_correlation(dit_max, loc)
     spearman_corr_lcom_loc, p_value_lcom_loc = calculate_spearman_correlation(avg_lcom, loc)
     
-    print("\nCorrelação de Spearman entre Média CBO e LOC:", spearman_corr_cbo_loc, "p-value:", p_value_cbo_loc)
-    print("Correlação de Spearman entre DIT Máx e LOC:", spearman_corr_dit_loc, "p-value:", p_value_dit_loc)
-    print("Correlação de Spearman entre Média LCOM e LOC:", spearman_corr_lcom_loc, "p-value:", p_value_lcom_loc)
+    print("\nCorrelação de Spearman entre Média CBO e LOC: rho =", spearman_corr_cbo_loc, "p-value =", p_value_cbo_loc)
+    print("Correlação de Spearman entre DIT Máx e LOC: rho =", spearman_corr_dit_loc, "p-value =", p_value_dit_loc)
+    print("Correlação de Spearman entre Média LCOM e LOC: rho =", spearman_corr_lcom_loc, "p-value =", p_value_lcom_loc)
     
 if __name__ == "__main__":
     main()
