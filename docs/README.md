@@ -34,16 +34,18 @@ A seção de Resultados Obtidos do presente trabalho apresenta uma análise das 
     | | |
     | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | ![Gráfico 1 (CBO × Popularidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/be767d1a-58c5-476f-a118-1756c14b561f) | ![Gráfico 2 (DIT × Popularidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/f2cc30b8-e21b-4ce2-88f3-4b96f78329ae) |
-    | ![Gráfico 3 (LCOM × Popularidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/6375710e-5da7-4325-bcba-b274c07c2adb) | ![Gráfico 4 (Heatmap Popularidade)]() |
+    | ![Gráfico 3 (LCOM × Popularidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/6375710e-5da7-4325-bcba-b274c07c2adb) | ![Gráfico 4 (Heatmap Popularidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/77488551/88006761-bf3b-4957-a28f-a978a944585a) |
 
-**<center>Coeficiente de Speaman**
+**<h4 align="center">Coeficiente de Spearman</h4>**
 
+<div align="center" style="display:flex;">
+    
 |         | CBO   | DIT Máx                | LCOM  |
 | :------ | :---- | :--------------------- | :---- |
 | ρ (rho) | 0.05  | 0.14                   | 0.07  |
 | p-value | 0.102 | 1.66 × 10<sup>-5</sup> | 0.037 |
 
-</center>
+</div>
 
 A análise dos gráficos referentes às métricas CK do CBO, DIT e LCOM em relação à popularidade dos repositórios Java revela informações interessantes sobre a relação entre qualidade e atratividade para a comunidade de desenvolvedores. Inicialmente, não foi identificada uma correlação direta entre essas métricas e a popularidade dos repositórios, como evidenciado pelos valores de _p-value_ e coeficiente de correlação (_ρ_).
 
@@ -59,16 +61,18 @@ A hipótese inicial de que repositórios mais populares tendem a ter caracterís
     | | |
     | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
     | ![Gráfico 5 (CBO × Maturidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/0bdbb4dd-a0c1-4a48-a243-31741b05fb39) | ![Gráfico 6 (DIT × Maturidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/a52d331e-d7f9-45dc-bc79-dfd52ac5b18a) |
-    | ![Gráfico 7 (LCOM × Maturidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/2e9cf8dc-91a2-42dc-aa7f-8d6eff3a1d48) | ![Gráfico 8 (Heatmap Maturidade)]() |
+    | ![Gráfico 7 (LCOM × Maturidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/2e9cf8dc-91a2-42dc-aa7f-8d6eff3a1d48) | ![Gráfico 8 (Heatmap Maturidade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/77488551/05312102-5772-4171-9f0e-3be24b0c5255) |
 
-**<center>Coeficiente de Speaman**
+**<h4 align="center">Coeficiente de Spearman</h4>**
+
+<div align="center" style="display:flex;">
 
 |         | CBO    | DIT Máx                   | LCOM                      |
 | :------ | :----- | :------------------------ | :------------------------ |
 | ρ (rho) | 0.02   | 0.3                       | 0.23                      |
 | p-value | 0.5299 | 7.5789 × 10<sup>-21</sup> | 1.9075 × 10<sup>-12</sup> |
 
-</center>
+</div>
 
 A análise dos gráficos referentes às métricas CK do CBO, DIT e LCOM em relação à popularidade dos repositórios Java revela informações interessantes sobre a relação entre qualidade e atratividade para a comunidade de desenvolvedores. Inicialmente, não foi identificada uma correlação direta entre essas métricas e a popularidade dos repositórios, como evidenciado pelos valores de _p-value_ e coeficiente de correlação (_ρ_).
 
@@ -84,16 +88,18 @@ A hipótese inicial de que repositórios mais populares tendem a ter caracterís
     | | |
     | ---- | ---- |
     | ![Gráfico 9 (CBO × Releases)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/d12e288a-f50e-4de1-b9cd-496e7903672e) | ![Gráfico 10 (DIT × Releases)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/80f8f39d-4b0b-41bd-af2b-7e2978cbcb39) |
-    | ![Gráfico 11 (LCOM × Releases)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/fc10facd-cdea-4065-b0d8-d796aedb2cc3) | ![Gráfico 12 (Heatmap Atividade)]() |
+    | ![Gráfico 11 (LCOM × Releases)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/fc10facd-cdea-4065-b0d8-d796aedb2cc3) | ![Gráfico 12 (Heatmap Atividade)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/77488551/18dbfb7c-088a-4603-bcbf-d4ed331b61a4) |
 
-**<center>Coeficiente de Speaman**
+**<h4 align="center">Coeficiente de Spearman</h4>**
+
+<div align="center" style="display:flex;">
 
 |         | CBO                       | DIT Máx                  | LCOM                      |
 | :------ | :------------------------ | :----------------------- | :------------------------ |
 | ρ (rho) | 0.35                      | 0.35                     | 0.3                       |
 | p-value | 2.1819 × 10<sup>-27</sup> | 4.237 × 10<sup>-28</sup> | 3.5432 × 10<sup>-20</sup> |
 
-</center>
+</div>
 
 A análise dos gráficos que relacionam as métricas CK (CBO, DIT, LCOM) com a atividade dos repositórios Java, medida pelo número de releases, revela correlações estatisticamente significativas entre essas métricas e a atividade dos projetos.
 
@@ -109,16 +115,19 @@ Portanto, a hipótese levantada sugere que repositórios com maior atividade, me
     | | |
     | ---- | ---- |
     | ![Gráfico 13 (CBO × Tamanho)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/8564d149-7932-4fe6-b6c8-f90afde47271) | ![Gráfico 14 (DIT × Tamanho)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/526e4044-5281-4c31-81bb-517fca0d24d7) |
-    | ![Gráfico 15 (LCOM × Tamanho)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/62d9977b-628c-460f-8443-6be27e057dae) | ![Gráfico 6 (Heatmap Tamanho)]() |
+    | ![Gráfico 15 (LCOM × Tamanho)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/90854484/62d9977b-628c-460f-8443-6be27e057dae) | ![Gráfico 6 (Heatmap Tamanho)](https://github.com/NikolasLouret/lab-experimentacao-software-02/assets/77488551/b20639b5-e6cf-47ba-93cf-2f14c78e783a) |
 
-**<center>Coeficiente de Speaman**
+**<h4 align="center">Coeficiente de Spearman</h4>**
+
+<div align="center" style="display:flex;">
 
 |         | CBO                      | DIT Máx                    | LCOM                      |
 | :------ | :----------------------- | :------------------------- | :------------------------ |
 | ρ (rho) | 0.39                     | 0.79                       | 0.5                       |
 | p-value | 1.848 × 10<sup>-34</sup> | 4.0286 × 10<sup>-197</sup> | 6.0394 × 10<sup>-60</sup> |
 
-</center>
+</div>
+
 
 A hipótese inicial levantada sugere que repositórios com um maior volume de código, medido pelo LOC, tendem a apresentar características de qualidade inferiores. Essa suposição se baseia na ideia de que um código extenso pode indicar maior complexidade, dificultando a manutenção e aumentando a probabilidade de problemas de qualidade, como acoplamento excessivo. Portanto, espera-se que um código mais enxuto, com menos linhas de código e comentários, apresente uma melhor qualidade em termos de menor acoplamento entre objetos, menor profundidade na árvore de herança e maior coesão entre métodos.
 
