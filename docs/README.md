@@ -37,7 +37,7 @@ Para a análise do coeficiente de correlação, será considerados estes valores
 | Intervalo de _p-value_ | Classificação        |
 | :--------------------- | :------------------- |
 | _p-value_ < 0,001      | Existe correlação    |
-| _p-value_ >= 0,001     | No existe correlação |
+| _p-value_ >= 0,001     | Não existe correlação |
 
 </div>
  
